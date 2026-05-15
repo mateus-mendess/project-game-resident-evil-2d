@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6256732835957960826}
   - component: {fileID: 5579947057156320973}
   m_Layer: 3
-  m_Name: Enemy
+  m_Name: Enemy_Zombie_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 6bf26ff9d59bd9a49bc5fb59998f65da, type: 3}
+  m_Sprite: {fileID: -566965361, guid: 4b7435c4db152bd42b85ed352fc62aec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -155,7 +155,7 @@ Animator:
   m_GameObject: {fileID: 1356852026417750292}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 76da9d6fb23361f4fa9c009e08f725cf, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3fec9c8c3f943e64ead0f1d2159ccfe7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

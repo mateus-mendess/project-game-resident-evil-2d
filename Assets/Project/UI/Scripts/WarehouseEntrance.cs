@@ -1,10 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class WarehouseEntrance : MonoBehaviour
 {
     [SerializeField] private GameObject interactionIcon;
     [SerializeField] private string sceneToLoad = "WarehouseScene";
+
+    [Header("Transition")]
+    [SerializeField] private SceneTransition transitionManager;
 
     private bool playerInRange;
 
@@ -18,7 +20,7 @@ public class WarehouseEntrance : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            transitionManager.LoadScene(sceneToLoad);
         }
     }
 

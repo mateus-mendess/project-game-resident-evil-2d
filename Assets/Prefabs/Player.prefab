@@ -269,8 +269,7 @@ MonoBehaviour:
   reloadSound: {fileID: 0}
   maxAmmo: 12
   currentAmmo: 12
-  reloadDuration: 1
-  playerHUD: {fileID: 0}
+  ammoHUD: {fileID: 0}
 --- !u!114 &873949717545553347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +283,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
-  playerHUD: {fileID: 0}
+  currentHealth: 0
+  deathSlowMotionScale: 0.3
+  invincibilityDuration: 1.2
+  blinkInterval: 0.1
+  knockbackForce: 2
+  knockbackUpForce: 3
+  knockbackDuration: 0.2
+  delayBeforeDeath: 0.1
+  healthHUD: {fileID: 0}
 --- !u!82 &3782370240347606342
 AudioSource:
   m_ObjectHideFlags: 0
@@ -394,7 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aee59afa4f58c4b801f7b6cf093ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCoins
-  coins: 0
   coinText: {fileID: 0}
 --- !u!1 &5982716970988323320
 GameObject:

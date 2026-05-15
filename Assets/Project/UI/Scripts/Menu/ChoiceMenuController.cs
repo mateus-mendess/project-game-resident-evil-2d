@@ -27,6 +27,9 @@ public class ChoiceMenuController : MonoBehaviour
     [SerializeField] private AudioClip confirmSound;
     [SerializeField] private float confirmVolume = 1.5f;
 
+    [Header("Transition")]
+    [SerializeField] private SceneTransition transitionManager;
+
     private CanvasGroup canvasGroup;
     private int selectedIndex = 1;
     private bool isConfirming = false;
@@ -109,7 +112,7 @@ public class ChoiceMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        SceneManager.LoadScene("SampleScene");
+        transitionManager.LoadScene("SampleScene");
     }
 
     private void BlinkArrow()

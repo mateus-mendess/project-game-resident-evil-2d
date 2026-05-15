@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -20,7 +19,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private int currentAmmo = 12;
 
     [Header("Recarga")]
-    [SerializeField] private float reloadDuration = 1f;
     private bool isReloading = false;
 
     [Header("HUD")]
@@ -51,6 +49,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
             Reload();
+    }
+
+    public bool IsReloading()
+    {
+        return isReloading;
     }
 
     public void SetAttackDirection(int dir)
@@ -151,11 +154,6 @@ public class PlayerCombat : MonoBehaviour
             return;
         }
 
-        StartCoroutine(ReloadRoutine());
-    }
-
-    private IEnumerator ReloadRoutine()
-    {
         isReloading = true;
 
         if (animator != null)
@@ -163,8 +161,26 @@ public class PlayerCombat : MonoBehaviour
 
         if (audioSource != null && reloadSound != null)
             audioSource.PlayOneShot(reloadSound);
+    }
 
-        yield return new WaitForSeconds(reloadDuration);
+    public void CancelReload()
+    {
+        if (!isReloading) return;
+
+        isReloading = false;
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("reload");
+            animator.CrossFade("Idle", 0.05f);
+        }
+
+        Debug.Log("Recarga cancelada.");
+    }
+
+    public void FinishReload()
+    {
+        if (!isReloading) return;
 
         currentAmmo = maxAmmo;
         PlayerGameState.CurrentAmmo = currentAmmo;
@@ -173,6 +189,8 @@ public class PlayerCombat : MonoBehaviour
             ammoHUD.UpdateAmmo(currentAmmo);
 
         isReloading = false;
+
+        Debug.Log("Recarga finalizada.");
     }
 
     private void OnDrawGizmosSelected()

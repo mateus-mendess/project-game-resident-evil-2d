@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private Vector2 movement;
     private PlayerCombat combat;
+    private PlayerHealth playerHealth;
 
     private bool isGrounded;
 
@@ -23,11 +24,17 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         combat = GetComponent<PlayerCombat>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
+        if (playerHealth != null && playerHealth.IsDead()) return;
+
         movement.x = Input.GetAxis("Horizontal");
+
+        if (combat != null && combat.IsReloading() && Mathf.Abs(movement.x) > 0.01f)
+            combat.CancelReload();
 
         isGrounded = Physics2D.OverlapCircle(
             groundCheck.position,
@@ -39,43 +46,53 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (combat != null)
+                combat.CancelReload();
+
             animator.SetTrigger("attack");
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (combat != null && combat.CanShoot())
+            if (combat != null)
             {
-                animator.SetTrigger("shoot");
+                combat.CancelReload();
+
+                if (combat.CanShoot())
+                    animator.SetTrigger("shoot");
             }
         }
 
         if (Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
+            if (combat != null)
+                combat.CancelReload();
+
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             animator.SetTrigger("jump");
         }
 
         if (Input.GetKeyDown(KeyCode.H))
-        {
-            GetComponent<PlayerHealth>().TakeDamage(10);
-        }
+            playerHealth.TakeDamage(10);
 
         if (Input.GetKeyDown(KeyCode.K))
-        {
-            GetComponent<PlayerHealth>().Die();
-        }
+            playerHealth.Die();
 
         HandleFlip();
     }
 
     void FixedUpdate()
     {
+        if (playerHealth != null && playerHealth.IsDead()) return;
+        if (playerHealth != null && playerHealth.IsKnockbacking) return;
+
         rb.linearVelocity = new Vector2(movement.x * speed, rb.linearVelocity.y);
     }
 
     void HandleFlip()
     {
+        if (combat == null) return;
+
         if (movement.x > 0)
         {
             sprite.flipX = false;
@@ -91,8 +108,6 @@ public class PlayerController : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         if (groundCheck != null)
-        {
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        }
     }
 }
