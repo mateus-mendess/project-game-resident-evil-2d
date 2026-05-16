@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class PlayerHealth : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private HealthHUD healthHUD;
 
+    [Header("Transição ao morrer")]
+    [SerializeField] private SceneTransition sceneTransition;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
@@ -39,8 +43,11 @@ public class PlayerHealth : MonoBehaviour
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
+        // Reseta a vida ao reentrar na cena
+        PlayerGameState.CurrentHealth = PlayerGameState.MaxHealth;
+
         maxHealth = PlayerGameState.MaxHealth;
-        currentHealth = Mathf.Clamp(PlayerGameState.CurrentHealth, 0, maxHealth);
+        currentHealth = maxHealth;
         PlayerGameState.CurrentHealth = currentHealth;
 
         animator = GetComponent<Animator>();
@@ -195,22 +202,28 @@ public class PlayerHealth : MonoBehaviour
         if (spriteRenderer != null)
         {
             Color color = spriteRenderer.color;
-
             float duration = 1.2f;
             float elapsed = 0f;
 
             while (elapsed < duration)
             {
                 elapsed += Time.unscaledDeltaTime;
-
                 float alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
-
                 spriteRenderer.color = new Color(color.r, color.g, color.b, alpha);
-
                 yield return null;
             }
         }
 
-        Destroy(gameObject);
+        // Reseta o timeScale antes de transicionar
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
+
+        // Volta para a cena atual
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (sceneTransition != null)
+            sceneTransition.LoadScene(currentScene);
+        else
+            SceneManager.LoadScene(currentScene);
     }
 }

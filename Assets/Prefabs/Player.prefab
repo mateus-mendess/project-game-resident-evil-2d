@@ -66,7 +66,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.21, y: -0.54, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.8718565}
+  m_LocalScale: {x: 2.2, y: 2.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3397641931678845754}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e72a1618b342c4c8379afb82a95c00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
+  speed: 4
   jumpForce: 10
   groundCheck: {fileID: 3413608902454490303}
   groundCheckRadius: 0.15
@@ -263,7 +263,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 8
-  attackDamage: 20
+  attackDamage: 10
   attackSound: {fileID: 8300000, guid: d707bff646dd9bb4e8f3d37b74c824fd, type: 3}
   shootSound: {fileID: 8300000, guid: 335cbfff8ff68dc4aa27c4954e33ad8a, type: 3}
   reloadSound: {fileID: 0}

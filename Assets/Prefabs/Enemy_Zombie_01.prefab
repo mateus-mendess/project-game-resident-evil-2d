@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
   attackRange: 0.7
-  attackDamage: 10
+  attackDamage: 15
   attackCooldown: 1.5
   attackSound: {fileID: 0}
 --- !u!114 &6767146281640709919

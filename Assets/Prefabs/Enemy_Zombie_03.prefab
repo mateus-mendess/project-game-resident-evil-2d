@@ -34,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.46, y: -0.54, z: 0}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 1.4173149}
+  m_LocalScale: {x: 2.4931283, y: 2.9566996, z: 1.4173149}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1934211513027397902}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCombat
   attackRange: 0.7
-  attackDamage: 10
+  attackDamage: 30
   attackCooldown: 1.5
   attackSound: {fileID: 0}
 --- !u!114 &6767146281640709919
@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e6ac5b4fccd894780eadae7018b91e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 50
+  maxHealth: 400
   healthBar: {fileID: 3833354466796237228}
   healthBarObject: {fileID: 3090211448835071990}
   damageSound: {fileID: 0}
@@ -309,9 +309,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2902a5bd877ae7746aa3d2aada518ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  patrolSpeed: 1
-  chaseSpeed: 2
-  patrolDistance: 2
+  patrolSpeed: 1.5
+  chaseSpeed: 2.5
+  patrolDistance: 3
   detectionRange: 10
 --- !u!114 &5579947057156320973
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
   coinPrefab: {fileID: 848693737728432637, guid: f0113fbbc5f88324c9506537b81bb754, type: 3}
-  dropOffset: {x: 0, y: -1.7}
+  dropOffset: {x: 0, y: -0.59}
 --- !u!1 &3090211448835071990
 GameObject:
   m_ObjectHideFlags: 0
