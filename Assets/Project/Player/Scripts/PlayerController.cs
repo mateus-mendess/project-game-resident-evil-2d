@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerHealth != null && playerHealth.IsDead()) return;
 
+        // Movimento horizontal via GetAxis (já captura A/D e Arrow Left/Right)
         movement.x = Input.GetAxis("Horizontal");
 
         if (combat != null && combat.IsReloading() && Mathf.Abs(movement.x) > 0.01f)
@@ -44,7 +45,18 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("speed", Mathf.Abs(movement.x));
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Pular — W ou Arrow Up
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded)
+        {
+            if (combat != null)
+                combat.CancelReload();
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetTrigger("jump");
+        }
+
+        // Bater — L ou C
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetKeyDown(KeyCode.C))
         {
             if (combat != null)
                 combat.CancelReload();
@@ -52,7 +64,8 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("attack");
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        // Atirar — J ou Z
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.Z))
         {
             if (combat != null)
             {
@@ -63,20 +76,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        // Carregar arma — K ou X
+        if (Input.GetKeyDown(KeyCode.K) || Input.GetKeyDown(KeyCode.X))
         {
             if (combat != null)
-                combat.CancelReload();
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            animator.SetTrigger("jump");
+                combat.Reload();
         }
-
-        if (Input.GetKeyDown(KeyCode.H))
-            playerHealth.TakeDamage(10);
-
-        if (Input.GetKeyDown(KeyCode.K))
-            playerHealth.Die();
 
         HandleFlip();
     }

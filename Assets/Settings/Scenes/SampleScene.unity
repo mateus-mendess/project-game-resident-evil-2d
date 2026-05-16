@@ -2289,7 +2289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7524932509118484602, guid: 774aebf792f092447b75490fad8f9272, type: 3}
       propertyPath: m_Name
-      value: CanvasGameplay
+      value: CanvasHUD
       objectReference: {fileID: 0}
     - target: {fileID: 7525075528984394708, guid: 774aebf792f092447b75490fad8f9272, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2309,11 +2309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7936954626313536306, guid: 774aebf792f092447b75490fad8f9272, type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 1280
+      value: 1920
       objectReference: {fileID: 0}
     - target: {fileID: 7936954626313536306, guid: 774aebf792f092447b75490fad8f9272, type: 3}
       propertyPath: m_ReferenceResolution.y
-      value: 720
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

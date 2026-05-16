@@ -10,16 +10,22 @@ public class EndZoneTrigger : MonoBehaviour
     [Header("Tag do Player")]
     [SerializeField] private string playerTag = "Player";
 
+    [Header("HUD")]
+    [SerializeField] private GameObject hudCanvas;
+
     private bool triggered = false;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"EndZone tocado por: {other.gameObject.name} | Tag: {other.tag}");
-        
         if (triggered) return;
         if (!other.CompareTag(playerTag)) return;
+        if (other.gameObject.name != "Player") return;
 
         triggered = true;
+
+        if (hudCanvas != null)
+            hudCanvas.SetActive(false);
+
         transitionManager.LoadSceneWithText(targetScene, endMessage);
     }
 }
