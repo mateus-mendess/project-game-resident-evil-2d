@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrop
   coinPrefab: {fileID: 848693737728432637, guid: f0113fbbc5f88324c9506537b81bb754, type: 3}
-  dropOffset: {x: 0, y: -1.7}
+  dropOffset: {x: 0, y: -0.54}
 --- !u!1 &3090211448835071990
 GameObject:
   m_ObjectHideFlags: 0

@@ -112,7 +112,7 @@ public class ChoiceMenuController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        transitionManager.LoadScene("SampleScene");
+        transitionManager.LoadSceneWithText("SampleScene", "Birmingham, 1942.");
     }
 
     private void BlinkArrow()
